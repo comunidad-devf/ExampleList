@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="12dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewSuperHeroe"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/the_flash_logo"/>
+
+    <TextView
+        android:id="@+id/textViewSuperHeroe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Flash"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
