@@ -17,8 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener
-{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, MyOnItemClickListener {
     private final static String[] Paises = {"Mexico", "Alemania", "España", "Colombia", "Argentina", "Belgica", "Rumania", "Portugal", "Francia", "Estados Unidos"};
     ListView myListView;
 
@@ -39,11 +38,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 (RecyclerView) findViewById(R.id.myRecyclerView);
 
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
 
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
 
         MyAdapterRecyclerView adapterRecyclerView =
@@ -51,7 +50,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         recyclerView.setAdapter(adapterRecyclerView);
 
+        adapterRecyclerView.setMyOnItemClickListener(this);
 
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(this,""+position,Toast.LENGTH_LONG).show();
     }
 
     private void setupListView() {
@@ -65,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         myListView.setAdapter(myAdapter);
     }
+
+
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
@@ -84,4 +92,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     return myListJusticeLeague;
     }
+
+
 }

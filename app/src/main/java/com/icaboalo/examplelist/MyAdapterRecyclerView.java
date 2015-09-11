@@ -19,6 +19,8 @@ public class MyAdapterRecyclerView extends
 
     private List<JusticeLeague> justiceLeagueList;
     private LayoutInflater inflater;
+    private MyOnItemClickListener myOnItemClickListener;
+
 
     public MyAdapterRecyclerView(Context context, List<JusticeLeague> justiceLeagueList) {
         this.justiceLeagueList = justiceLeagueList;
@@ -26,6 +28,9 @@ public class MyAdapterRecyclerView extends
         inflater = LayoutInflater.from(context);
     }
 
+    public void setMyOnItemClickListener(MyOnItemClickListener myOnItemClickListener) {
+        this.myOnItemClickListener = myOnItemClickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -58,7 +63,7 @@ public class MyAdapterRecyclerView extends
         notifyItemInserted(justiceLeagueList.size() - 1);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageViewSuperHeroe;
         TextView textViewSuperHeroe;
@@ -68,8 +73,10 @@ public class MyAdapterRecyclerView extends
                           int idTextViewSuperHeroe) {
 
             super(itemView);
-            imageViewSuperHeroe = (ImageView) itemView.findViewById(idImagenSuperHeroe);
 
+            itemView.setOnClickListener(this);
+
+            imageViewSuperHeroe = (ImageView) itemView.findViewById(idImagenSuperHeroe);
             textViewSuperHeroe = (TextView) itemView.findViewById(idTextViewSuperHeroe);
 
         }
@@ -81,6 +88,11 @@ public class MyAdapterRecyclerView extends
 
         public void setImagen(int resourceImage) {
             imageViewSuperHeroe.setImageResource(resourceImage);
+        }
+
+        @Override
+        public void onClick(View view) {
+            myOnItemClickListener.onItemClick(getAdapterPosition());
         }
     }
 
