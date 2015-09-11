@@ -45,10 +45,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<JusticeLeague> createJusticeLeague(){
 
         List<JusticeLeague> myListJusticeLeague = new ArrayList<>();
-        myListJusticeLeague.add(new JusticeLeague("Flash", R.drawable.the_flash_logo));
-        myListJusticeLeague.add(new JusticeLeague("Green Arrow", R.drawable.green_arrow_logo));
-        myListJusticeLeague.add(new JusticeLeague("Green Lantern", R.drawable.green_lantern_logo));
-        myListJusticeLeague.add(new JusticeLeague("Batman", R.drawable.batman_logo));
-        return myListJusticeLeague;
+        for (int i = 0; i < 10; i++) {
+            myListJusticeLeague.add(new JusticeLeague("Flash", R.drawable.the_flash_logo));
+            myListJusticeLeague.add(new JusticeLeague("Green Arrow", R.drawable.green_arrow_logo));
+            myListJusticeLeague.add(new JusticeLeague("Green Lantern", R.drawable.green_lantern_logo));
+            myListJusticeLeague.add(new JusticeLeague("Batman", R.drawable.batman_logo));
+        }
+
+    return myListJusticeLeague;
     }
 }

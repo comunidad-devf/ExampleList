@@ -1,6 +1,7 @@
 package com.icaboalo.examplelist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +39,14 @@ public class MyAdapter extends ArrayAdapter<JusticeLeague> {
             viewHolder = new ViewHolder(view, R.id.imageViewSuperHeroe,
                     R.id.textViewSuperHeroe);
 
+            view.setBackgroundColor(Color.BLACK);
+
+
             view.setTag(viewHolder);
 
         } else {
             view = convertView;
+            view.setBackgroundColor(Color.RED);
 
             viewHolder = (ViewHolder) view.getTag();
         }
