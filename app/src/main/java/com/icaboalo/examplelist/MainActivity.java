@@ -1,7 +1,11 @@
 package com.icaboalo.examplelist;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +26,35 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_recyclerview);
 
+//        setupListView();
+        setupRecyclerView();
+
+    }
+
+    private void setupRecyclerView() {
+
+        RecyclerView recyclerView =
+                (RecyclerView) findViewById(R.id.myRecyclerView);
+
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+
+        MyAdapterRecyclerView adapterRecyclerView =
+                new MyAdapterRecyclerView(this, createJusticeLeague());
+
+        recyclerView.setAdapter(adapterRecyclerView);
+
+
+    }
+
+    private void setupListView() {
         myListView = (ListView) findViewById(R.id.my_listview);
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
 //                                                          android.R.layout.simple_list_item_1,
@@ -31,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         MyAdapter myAdapter = new MyAdapter(this, R.layout.list_row,
                 createJusticeLeague());
-
 
         myListView.setAdapter(myAdapter);
     }

@@ -26,6 +26,7 @@ public class MyAdapterRecyclerView extends
         inflater = LayoutInflater.from(context);
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.list_row, parent, false);
@@ -51,6 +52,12 @@ public class MyAdapterRecyclerView extends
         return justiceLeagueList.size();
     }
 
+    public void addItem(JusticeLeague hero){
+        justiceLeagueList.add(hero);
+
+        notifyItemInserted(justiceLeagueList.size() - 1);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageViewSuperHeroe;
@@ -66,6 +73,7 @@ public class MyAdapterRecyclerView extends
             textViewSuperHeroe = (TextView) itemView.findViewById(idTextViewSuperHeroe);
 
         }
+
 
         public void setNombre(String nombre) {
             textViewSuperHeroe.setText(nombre);
