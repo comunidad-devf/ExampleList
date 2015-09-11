@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Edgar Salvador Maurilio on 09/09/2015.
  */
-public class MyAdapter extends ArrayAdapter<JusticeLeague>{
+public class MyAdapter extends ArrayAdapter<JusticeLeague> {
 
     private List<JusticeLeague> justiceLeagueList;
     private LayoutInflater inflater;
@@ -30,16 +30,53 @@ public class MyAdapter extends ArrayAdapter<JusticeLeague>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view = inflater.inflate(R.layout.list_row, parent, false);
+        View view;
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            view = inflater.inflate(R.layout.list_row, parent, false);
 
-        ImageView imageViewSuperHeroe = (ImageView) view.findViewById(R.id.imageViewSuperHeroe);
-        TextView textViewSuperHeroe = (TextView) view.findViewById(R.id.textViewSuperHeroe);
+            viewHolder = new ViewHolder(view, R.id.imageViewSuperHeroe,
+                    R.id.textViewSuperHeroe);
+
+            view.setTag(viewHolder);
+
+        } else {
+            view = convertView;
+
+            viewHolder = (ViewHolder) view.getTag();
+        }
 
         JusticeLeague justiceLeague = justiceLeagueList.get(position);
 
-        imageViewSuperHeroe.setImageResource(justiceLeague.getImage());
-        textViewSuperHeroe.setText(justiceLeague.getName());
+        viewHolder.setNombre(justiceLeague.getName());
+
+        viewHolder.setImagen(justiceLeague.getImage());
 
         return view;
     }
+
+    private static class ViewHolder {
+
+        ImageView imageViewSuperHeroe;
+        TextView textViewSuperHeroe;
+
+
+        public ViewHolder(View itemView, int idImagenSuperHeroe,
+                          int idTextViewSuperHeroe) {
+
+            imageViewSuperHeroe = (ImageView) itemView.findViewById(idImagenSuperHeroe);
+
+            textViewSuperHeroe = (TextView) itemView.findViewById(idTextViewSuperHeroe);
+
+        }
+
+        public void setNombre(String nombre) {
+            textViewSuperHeroe.setText(nombre);
+        }
+
+        public void setImagen(int resourceImage) {
+            imageViewSuperHeroe.setImageResource(resourceImage);
+        }
+    }
+
 }

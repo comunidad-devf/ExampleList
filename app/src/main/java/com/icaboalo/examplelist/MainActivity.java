@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
     {
-        Toast.makeText(this, Paises[position], Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
     }
 
     private List<JusticeLeague> createJusticeLeague(){
